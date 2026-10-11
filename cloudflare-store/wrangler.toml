@@ -1,0 +1,11 @@
+name = "uvid-store-api"
+main = "src/index.js"
+compatibility_date = "2026-10-11"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "uvid-store"
+database_id = "6c5c4429-85f7-4738-82cb-ddf2d828f26a"
+
+[vars]
+PUBLIC_ORIGIN = "https://uvid21.netlify.app"

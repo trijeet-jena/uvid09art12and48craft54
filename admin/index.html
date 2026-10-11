@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>UVID Admin</title>
+  <link rel="icon" type="image/jpeg" href="./../assets/logo.jpeg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./admin.css" />
+</head>
+<body>
+  <!-- ============ LOGIN ============ -->
+  <div id="loginView" class="login" hidden>
+    <div class="login__card">
+      <div class="login__brand">
+        <img class="login__mark" src="./../assets/logo.jpeg" alt="UVID logo" width="44" height="44" />
+        <div>
+          <b>UVID <i>Admin</i></b>
+          <small>Stationery store control panel</small>
+        </div>
+      </div>
+      <h1>Sign in</h1>
+      <p class="login__sub">Use the admin email and password. Customers cannot access this panel.</p>
+      <form id="loginForm" novalidate>
+        <label class="fld">
+          <span>Admin email</span>
+          <input id="loginEmail" type="email" autocomplete="username" placeholder="admin@uvid.store" required />
+        </label>
+        <label class="fld" id="pwField">
+          <span>Password</span>
+          <input id="loginPassword" type="password" autocomplete="current-password" placeholder="••••••••" required />
+        </label>
+        <label class="fld" id="mfaField" hidden>
+          <span>Authenticator code</span>
+          <input id="loginMfa" type="text" inputmode="numeric" autocomplete="one-time-code" placeholder="6-digit code" maxlength="6" />
+        </label>
+        <p id="loginError" class="form-error" role="alert" hidden></p>
+        <button id="loginBtn" class="btn btn--primary btn--block" type="submit">Sign in to dashboard</button>
+      </form>
+      <a class="login__back" href="/">← Back to storefront</a>
+    </div>
+  </div>
+
+  <!-- ============ APP SHELL ============ -->
+  <div id="appView" class="app" hidden>
+    <aside id="sidebar" class="sidebar">
+      <div class="sidebar__brand">
+        <img class="sidebar__mark" src="./../assets/logo.jpeg" alt="UVID logo" width="44" height="44" />
+        <div class="sidebar__name"><b>UVID</b><i>Admin panel</i></div>
+      </div>
+      <nav class="sidebar__nav" id="sideNav">
+        <a href="#/dashboard" data-route="dashboard"><span class="navic" data-ic="grid"></span>Dashboard</a>
+        <a href="#/products" data-route="products"><span class="navic" data-ic="box"></span>Products</a>
+        <a href="#/categories" data-route="categories"><span class="navic" data-ic="tag"></span>Categories</a>
+        <a href="#/orders" data-route="orders"><span class="navic" data-ic="receipt"></span>Orders</a>
+        <a href="#/customers" data-route="customers"><span class="navic" data-ic="users"></span>Customers</a>
+        <a href="#/seminar" data-route="seminar"><span class="navic" data-ic="clip"></span>Seminar</a>
+        <a href="#/settings" data-route="settings"><span class="navic" data-ic="gear"></span>Settings</a>
+      </nav>
+      <div class="sidebar__foot">
+        <a class="sidebar__store" href="/" target="_blank" rel="noopener">View storefront ↗</a>
+        <button class="btn btn--ghost btn--block" id="logoutBtn">Log out</button>
+      </div>
+    </aside>
+    <div id="sideBackdrop" class="side-backdrop" hidden></div>
+
+    <div class="main">
+      <header class="topbar">
+        <button id="menuBtn" class="iconbtn" aria-label="Menu" title="Menu"><span data-ic="menu"></span></button>
+        <h2 id="pageTitle">Dashboard</h2>
+        <div class="topbar__right">
+          <span class="pill pill--live" id="livePill" title="Live connection to the database"><i></i> Live</span>
+          <span class="adminchip" id="adminChip">Admin</span>
+        </div>
+      </header>
+      <main id="content" class="content" tabindex="-1"></main>
+    </div>
+  </div>
+
+  <!-- modal + toast roots -->
+  <div id="modalRoot"></div>
+  <div id="toastRoot" class="toast-root" aria-live="polite"></div>
+
+  <script src="./admin.js"></script>
+</body>
+</html>

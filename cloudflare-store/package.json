@@ -1,0 +1,13 @@
+{
+  "name": "uvid-store-api",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "deploy": "wrangler deploy",
+    "db:init": "wrangler d1 execute uvid-store --remote --file=schema.sql",
+    "db:seed": "wrangler d1 execute uvid-store --remote --file=seed-catalog.sql"
+  },
+  "devDependencies": {
+    "wrangler": "^4.0.0"
+  }
+}

@@ -1,0 +1,16 @@
+name = "uvid-seminar"
+main = "src/index.js"
+compatibility_date = "2026-01-01"
+
+# The seminar page is served straight from the existing project folder,
+# so there is only ever one copy of the page to maintain.
+[assets]
+directory = "../seminar"
+binding = "ASSETS"
+
+# database_id is filled in for you by:
+#   npx wrangler d1 create uvid-seminar
+[[d1_databases]]
+binding = "DB"
+database_name = "uvid-seminar"
+database_id = "REPLACE_WITH_YOUR_D1_DATABASE_ID"

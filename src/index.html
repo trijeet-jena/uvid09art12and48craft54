@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UVID — Stationery Store | Pens, Notebooks, Planners & Desk Finds</title>
+  <meta name="description" content="UVID — a modern stationery store. Gel pens, dotted journals, planners, art supplies and desk accessories with free delivery over ₹499, COD, and 7-day returns." />
+  <meta name="theme-color" content="#2e7d5b" />
+  <link rel="icon" type="image/jpeg" href="./assets/logo.jpeg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <!-- ================= HEADER ================= -->
+  <header class="header">
+    <div class="header__row">
+      <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+
+      <a class="brand" href="#/" aria-label="UVID home">
+        <img class="brand__mark brand__mark--img" src="./assets/logo.jpeg" alt="UVID logo" width="40" height="40" />
+        <span>
+          <span class="brand__name">U<em>VID</em></span>
+          <span class="brand__tag">stationery co.</span>
+        </span>
+      </a>
+
+      <div class="search">
+        <div class="search__box">
+          <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true">
+            <circle cx="11" cy="11" r="7" /><path d="m20 20-3.8-3.8" />
+          </svg>
+          <input id="searchInput" type="search" placeholder="Search pens, notebooks, planners…" autocomplete="off" aria-label="Search products" />
+        </div>
+        <div class="search__drop" id="searchDrop" role="listbox" aria-label="Search suggestions"></div>
+      </div>
+
+      <div class="hactions">
+        <a class="hicon" href="#/wishlist" aria-label="Wishlist">
+          <svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true">
+            <path d="M12 21s-7.5-4.7-10-9.3C.3 8 2.4 4.5 6 4.5c2.2 0 3.6 1.1 4.5 2.6l1.5 2.4 1.5-2.4c.9-1.5 2.3-2.6 4.5-2.6 3.6 0 5.7 3.5 4 7.2C19.5 16.3 12 21 12 21z"/>
+          </svg>
+          <span class="lbl">Wishlist</span>
+          <span class="hicon__badge" id="wishCount" hidden>0</span>
+        </a>
+        <a class="hicon" href="#/orders" aria-label="My orders">
+          <svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 8 12 3 3 8v8l9 5 9-5V8Z"/><path d="m3.3 8.3 8.7 4.9 8.7-4.9"/><path d="M12 21v-7.8"/>
+          </svg>
+          <span class="lbl">Orders</span>
+        </a>
+        <a class="hicon" href="#/cart" aria-label="Cart">
+          <svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="9" cy="20.5" r="1.4"/><circle cx="17.5" cy="20.5" r="1.4"/>
+            <path d="M2.5 3.5h2.2l2.5 11.2a1.8 1.8 0 0 0 1.8 1.4h7.9a1.8 1.8 0 0 0 1.8-1.4l1.5-7.2H6"/>
+          </svg>
+          <span class="lbl">Cart</span>
+          <span class="hicon__badge" id="cartCount" hidden>0</span>
+        </a>
+        <button class="chip" id="accountChip" aria-label="Account"></button>
+      </div>
+    </div>
+  </header>
+
+  <!-- promo ticker -->
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker__track">
+      <span>✦ Free delivery over ₹499</span><span>✦ Code <b>&nbsp;PAPER10&nbsp;</b> — 10% off</span><span>✦ 7-day easy returns</span><span>✦ COD available</span><span>✦ New: 2026 planners are here</span>
+      <span>✦ Free delivery over ₹499</span><span>✦ Code <b>&nbsp;PAPER10&nbsp;</b> — 10% off</span><span>✦ 7-day easy returns</span><span>✦ COD available</span><span>✦ New: 2026 planners are here</span>
+    </div>
+  </div>
+
+  <!-- ================= VIEW ================= -->
+  <main class="view" id="view" tabindex="-1"></main>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="footer">
+    <div class="footer__in">
+      <div class="footer__col footer__col--brand">
+      <img class="brand__mark brand__mark--img" src="./assets/logo.jpeg" alt="UVID logo" width="40" height="40" />
+      <div>
+        <b>UVID</b>
+          <p>Pens, paper & pretty desk things.<br/>Made for people who still love to write.</p>
+        </div>
+      </div>
+      <div class="footer__col">
+        <h4>Shop</h4>
+        <a href="#/c/pens">Pens & Writing</a>
+        <a href="#/c/notebooks">Notebooks</a>
+        <a href="#/c/art">Art & Craft</a>
+        <a href="#/c/planners">Planners</a>
+      </div>
+      <div class="footer__col">
+        <h4>Help</h4>
+        <a href="#/orders">Track your order</a>
+        <a href="#/account?tab=addresses">Shipping & addresses</a>
+        <a href="#/search?sort=discount">Deals of the week</a>
+      </div>
+      <div class="footer__col">
+        <h4>UVID</h4>
+        <a href="#/account">My account</a>
+        <a href="#/wishlist">Wishlist</a>
+        <a href="#/cart">Cart</a>
+      </div>
+    </div>
+    <p class="footer__note">© <span id="year"></span> UVID · Demo store — payments are simulated and data stays in your browser.</p>
+  </footer>
+
+  <!-- ================= CHROME ================= -->
+  <div class="backdrop" id="backdrop"></div>
+
+  <aside class="drawer" id="mobileDrawer" aria-label="Menu">
+    <div class="drawer__brand">
+      <img class="brand__mark brand__mark--img" src="./assets/logo.jpeg" alt="UVID logo" width="40" height="40" />
+      <b>U<span style="color:var(--tang)">VID</span></b>
+    </div>
+    <nav class="drawer__links" aria-label="Categories">
+      <a href="#/">🏠 Home</a>
+      <a href="#/c/pens">🖊️ Pens & Writing</a>
+      <a href="#/c/notebooks">📒 Notebooks</a>
+      <a href="#/c/office">📎 Office Supplies</a>
+      <a href="#/c/art">🎨 Art & Craft</a>
+      <a href="#/c/desk">🗂️ Desk Accessories</a>
+      <a href="#/c/school">✏️ School Essentials</a>
+      <a href="#/c/planners">🗓️ Planners</a>
+      <hr />
+      <a href="#/wishlist">♥ Wishlist</a>
+      <a href="#/orders">📦 My orders</a>
+      <a href="#/cart">🛒 Cart</a>
+      <a href="#/account">👤 My account</a>
+    </nav>
+  </aside>
+
+  <!-- auth modal -->
+  <div class="modal" id="authModal" role="dialog" aria-modal="true" aria-label="Sign in with Gmail">
+    <div class="modal__backdrop" data-closeauth></div>
+    <div class="modal__box">
+      <div class="auth">
+        <button class="auth__close" data-closeauth aria-label="Close">✕</button>
+        <span id="authPurpose" hidden></span>
+        <div id="authBox"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- mobile bottom nav -->
+  <nav class="bottomnav" aria-label="Quick navigation">
+    <div class="bottomnav__in">
+      <a class="bnav bnav--on" href="#/" data-nav="home">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="m3 10.5 9-7.5 9 7.5V20a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1v-9.5Z"/></svg>
+        Home
+      </a>
+      <a class="bnav" href="#/search" data-nav="browse">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.8-3.8"/></svg>
+        Browse
+      </a>
+      <a class="bnav" href="#/wishlist" data-nav="wishlist">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M12 21s-7.5-4.7-10-9.3C.3 8 2.4 4.5 6 4.5c2.2 0 3.6 1.1 4.5 2.6l1.5 2.4 1.5-2.4c.9-1.5 2.3-2.6 4.5-2.6 3.6 0 5.7 3.5 4 7.2C19.5 16.3 12 21 12 21z"/></svg>
+        Wishlist
+        <span class="bnav__badge" id="wishCountM" hidden>0</span>
+      </a>
+      <a class="bnav" href="#/orders" data-nav="orders">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8 12 3 3 8v8l9 5 9-5V8Z"/><path d="m3.3 8.3 8.7 4.9 8.7-4.9"/></svg>
+        Orders
+      </a>
+      <a class="bnav" href="#/cart" data-nav="cart">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20.5" r="1.4"/><circle cx="17.5" cy="20.5" r="1.4"/><path d="M2.5 3.5h2.2l2.5 11.2a1.8 1.8 0 0 0 1.8 1.4h7.9a1.8 1.8 0 0 0 1.8-1.4l1.5-7.2H6"/></svg>
+        Cart
+        <span class="bnav__badge" id="cartCountM" hidden>0</span>
+      </a>
+    </div>
+  </nav>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="data/product-images.js"></script>
+  <script src="data/products.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/sync.js"></script>
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

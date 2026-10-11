@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="description" content="Seminar details and online registration." />
+  <title>Seminar — Details &amp; Registration</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%232e7d5b'/%3E%3Ctext x='32' y='45' font-family='Arial' font-size='34' font-weight='700' fill='white' text-anchor='middle'%3ES%3C/text%3E%3C/svg%3E" />
+  <style>
+    :root {
+      --brand: #2e7d5b; --brand-dark: #1f5a40; --brand-soft: #e8f4ee;
+      --accent: #e8622a; --accent-soft: #fdefe7;
+      --ink: #16241d; --muted: #5c6b64; --line: #dfe7e2; --bg: #f7faf8;
+      --radius: 14px; --shadow: 0 1px 2px rgba(16,32,24,.05), 0 12px 32px rgba(16,32,24,.07);
+    }
+    * { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; }
+    body {
+      margin: 0; background: var(--bg); color: var(--ink); line-height: 1.6;
+      font-family: "Segoe UI", Roboto, -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
+    }
+    .wrap { width: 100%; max-width: 900px; margin: 0 auto; padding: 0 18px 72px; }
+
+    /* ---------- header ---------- */
+    header.top { background: var(--brand); color: #fff; padding: 18px 0 96px; }
+    header.top .wrap { padding-bottom: 0; }
+    .brandrow { display: flex; align-items: center; gap: 10px; font-weight: 700; letter-spacing: .2px; }
+    .mark { width: 34px; height: 34px; border-radius: 9px; background: rgba(255,255,255,.16); display: grid; place-items: center; font-size: 17px; }
+    .tag { margin-left: auto; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: .8px; background: rgba(255,255,255,.14); padding: 5px 11px; border-radius: 999px; }
+
+    /* ---------- hero ---------- */
+    .hero { margin-top: -66px; background: #fff; border-radius: var(--radius); box-shadow: var(--shadow); padding: 26px 24px; }
+    .eyebrow { color: var(--accent); font-weight: 700; font-size: 13px; letter-spacing: 1.2px; text-transform: uppercase; margin: 0 0 8px; }
+    h1 { font-size: clamp(26px, 6vw, 40px); line-height: 1.18; margin: 0 0 12px; letter-spacing: -.6px; }
+    .lede { color: var(--muted); font-size: clamp(15px, 2.4vw, 17px); margin: 0; white-space: pre-line; }
+
+    /* placeholder chip for fields the owner has not filled in yet */
+    .ph { display: inline-block; color: #8a6d3b; background: #fdf6e3; border: 1px dashed #e0c98a; border-radius: 8px; padding: 1px 9px; font-size: .9em; font-weight: 600; }
+
+    /* ---------- detail cards ---------- */
+    .facts { display: grid; gap: 12px; grid-template-columns: 1fr; margin-top: 18px; }
+    @media (min-width: 640px) { .facts { grid-template-columns: 1fr 1fr; } }
+    .fact { background: var(--bg); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; min-width: 0; }
+    .fact dt { margin: 0 0 4px; font-size: 12px; font-weight: 700; letter-spacing: .8px; text-transform: uppercase; color: var(--muted); }
+    .fact dd { margin: 0; font-weight: 600; overflow-wrap: anywhere; }
+    .fact a { color: var(--brand); }
+
+    section.card { background: #fff; border-radius: var(--radius); box-shadow: var(--shadow); padding: 24px; margin-top: 18px; }
+    section.card > h2 { font-size: 19px; margin: 0 0 14px; letter-spacing: -.2px; }
+    .agenda { list-style: none; margin: 0; padding: 0; counter-reset: a; }
+    .agenda li { position: relative; padding: 10px 0 10px 38px; border-bottom: 1px dashed var(--line); }
+    .agenda li:last-child { border-bottom: 0; }
+    .agenda li::before { counter-increment: a; content: counter(a); position: absolute; left: 0; top: 11px; width: 24px; height: 24px; border-radius: 50%; background: var(--brand-soft); color: var(--brand-dark); font-size: 13px; font-weight: 700; display: grid; place-items: center; }
+
+    /* ---------- form ---------- */
+    .grid2 { display: grid; gap: 14px; }
+    @media (min-width: 640px) { .grid2 { grid-template-columns: 1fr 1fr; } .span2 { grid-column: 1 / -1; } }
+    .fld { display: block; margin-bottom: 14px; }
+    .fld > span { display: block; font-weight: 600; font-size: 14px; margin-bottom: 6px; }
+    .opt { color: var(--muted); font-weight: 500; font-size: 12.5px; }
+    input, textarea {
+      width: 100%; font: inherit; color: var(--ink); background: #fff;
+      border: 1.5px solid var(--line); border-radius: 10px; padding: 12px 13px; min-height: 48px;
+    }
+    textarea { min-height: 92px; resize: vertical; }
+    input:focus, textarea:focus { outline: 2px solid var(--brand); outline-offset: 1px; border-color: var(--brand); }
+    input[aria-invalid="true"], textarea[aria-invalid="true"] { border-color: #c0392b; background: #fdf3f2; }
+    .err { display: none; margin: -6px 0 12px; color: #b02a1e; font-size: 13.5px; font-weight: 600; }
+    .err.show { display: block; }
+    /* honeypot: hidden from people, reachable by bots */
+    .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+
+    .btn { font: inherit; font-weight: 700; border: 0; border-radius: 11px; padding: 14px 22px; min-height: 50px; cursor: pointer; background: var(--brand); color: #fff; width: 100%; }
+    .btn:hover { background: var(--brand-dark); }
+    .btn[disabled] { opacity: .6; cursor: default; }
+    .fine { color: var(--muted); font-size: 12.5px; margin: 12px 0 0; }
+
+    /* ---------- confirmation ---------- */
+    .done { text-align: center; padding: 8px 0 4px; }
+    .tick { width: 66px; height: 66px; margin: 0 auto 16px; border-radius: 50%; background: var(--brand-soft); color: var(--brand-dark); font-size: 32px; display: grid; place-items: center; }
+    .done h3 { margin: 0 0 8px; font-size: 21px; }
+    .done p { color: var(--muted); margin: 0 auto; max-width: 46ch; }
+    .summary { text-align: left; margin: 20px 0 0; background: var(--bg); border: 1px solid var(--line); border-radius: 12px; padding: 16px; }
+    .summary div { display: flex; gap: 10px; padding: 6px 0; border-bottom: 1px dashed var(--line); font-size: 14.5px; }
+    .summary div:last-child { border-bottom: 0; }
+    .summary b { color: var(--muted); font-weight: 600; min-width: 108px; flex: none; }
+    .again { margin-top: 18px; font-weight: 600; color: var(--brand); background: none; border: 0; font: inherit; cursor: pointer; text-decoration: underline; }
+
+    footer.foot { text-align: center; color: var(--muted); font-size: 13px; margin-top: 26px; }
+    .loading { color: var(--muted); }
+    @media (prefers-reduced-motion: no-preference) { .btn { transition: background .15s ease; } }
+  </style>
+</head>
+<body>
+  <header class="top">
+    <div class="wrap">
+      <div class="brandrow">
+        <span class="mark">S</span>
+        <span id="orgName">Seminar</span>
+        <span class="tag">Registration open</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div class="hero">
+      <p class="eyebrow">Seminar</p>
+      <h1 id="sTitle" class="loading">Loading details…</h1>
+      <p class="lede" id="sDesc"></p>
+
+      <dl class="facts" id="sFacts">
+        <div class="fact"><dt>Date</dt><dd id="sDate"><span class="ph">Add date</span></dd></div>
+        <div class="fact"><dt>Time</dt><dd id="sTime"><span class="ph">Add time</span></dd></div>
+        <div class="fact"><dt>Location</dt><dd id="sLoc"><span class="ph">Add location</span></dd></div>
+        <div class="fact"><dt>Online meeting</dt><dd id="sMeet"><span class="ph">Add link or platform</span></dd></div>
+        <div class="fact"><dt>Speaker</dt><dd id="sSpeak"><span class="ph">Add speaker</span></dd></div>
+        <div class="fact"><dt>Contact</dt><dd id="sMail"><span class="ph">Add contact email</span></dd></div>
+      </dl>
+    </div>
+
+    <section class="card" id="agendaCard">
+      <h2>Agenda</h2>
+      <ol class="agenda" id="sAgenda"></ol>
+    </section>
+
+    <section class="card">
+      <h2>Register</h2>
+      <p style="margin:-6px 0 18px;color:var(--muted);font-size:14.5px">
+        Fields marked * are required. Your details are shared only with the seminar organizer.
+      </p>
+      <form id="regForm" novalidate>
+        <div class="hp" aria-hidden="true">
+          <label>Website<input type="text" id="website" name="website" tabindex="-1" autocomplete="off" /></label>
+        </div>
+        <div class="grid2">
+          <label class="fld">
+            <span>Full name *</span>
+            <input id="fullName" name="fullName" type="text" autocomplete="name" maxlength="120" required />
+          </label>
+          <label class="fld">
+            <span>Email *</span>
+            <input id="email" name="email" type="email" inputmode="email" autocomplete="email" maxlength="200" required />
+          </label>
+          <label class="fld">
+            <span>Phone <i class="opt">(optional)</i></span>
+            <input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" maxlength="25" />
+          </label>
+          <label class="fld">
+            <span>Organization <i class="opt">(optional)</i></span>
+            <input id="organization" name="organization" type="text" autocomplete="organization" maxlength="160" />
+          </label>
+          <label class="fld span2">
+            <span>Notes <i class="opt">(optional)</i></span>
+            <textarea id="notes" name="notes" maxlength="500" placeholder="Dietary needs, questions, accessibility requests…"></textarea>
+          </label>
+        </div>
+        <p class="err" id="formErr" role="alert"></p>
+        <button class="btn" id="submitBtn" type="submit">Register now</button>
+        <p class="fine">By registering you agree to be contacted about this seminar. We never sell or share your details.</p>
+      </form>
+
+      <div class="done" id="confirm" hidden>
+        <div class="tick">✓</div>
+        <h3>You're registered</h3>
+        <p id="confirmMsg">Thank you — we've saved your registration and will be in touch with the joining details.</p>
+        <div class="summary" id="confirmSummary"></div>
+        <button class="again" id="againBtn" type="button">Register another person</button>
+      </div>
+    </section>
+
+    <p class="foot">Questions? Use the contact email listed above.</p>
+  </main>
+
+  <script>
+    (function () {
+      "use strict";
+      var $ = function (s) { return document.querySelector(s); };
+      var loadedAt = Date.now();
+
+      /* ---------- render event details (empty fields show an editable placeholder) ---------- */
+      function ph(text) { return '<span class="ph">' + text + "</span>"; }
+      function esc(s) {
+        return String(s == null ? "" : s).replace(/[&<>"]/g, function (c) {
+          return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c];
+        });
+      }
+      function setField(id, value, placeholder) {
+        $(id).innerHTML = value ? esc(value) : ph(placeholder);
+      }
+
+      function render(s) {
+        document.title = (s.title ? s.title + " — Register" : "Seminar — Registration");
+        $("#orgName").textContent = s.title ? "Seminar" : "Seminar";
+        $("#sTitle").innerHTML = s.title ? esc(s.title) : ph("Add your seminar title");
+        $("#sTitle").classList.remove("loading");
+        $("#sDesc").innerHTML = s.description ? esc(s.description) : ph("Add a short description");
+
+        setField("#sDate", s.date, "Add date");
+        setField("#sTime", s.time, "Add time");
+        setField("#sLoc", s.location, "Add venue and city");
+
+        if (s.meetingUrl) {
+          var href = s.meetingUrl.match(/^https?:\/\//i) ? s.meetingUrl : "https://" + s.meetingUrl;
+          $("#sMeet").innerHTML = '<a href="' + esc(href) + '" rel="noopener noreferrer" target="_blank">Join link</a>';
+        } else {
+          setField("#sMeet", s.meetingUrl, "Add link or platform");
+        }
+        setField("#sSpeak", s.speaker, "Add speaker name and role");
+        setField("#sMail", s.contactEmail, "Add contact email");
+
+        var list = $("#sAgenda");
+        list.innerHTML = "";
+        if (s.agenda && s.agenda.length) {
+          s.agenda.forEach(function (item) {
+            var li = document.createElement("li");
+            li.textContent = item;
+            list.appendChild(li);
+          });
+          $("#agendaCard").hidden = false;
+        } else {
+          $("#agendaCard").hidden = false;
+          var li = document.createElement("li");
+          li.innerHTML = '<span class="ph">Add agenda items — one per line</span>';
+          list.appendChild(li);
+        }
+      }
+
+      function load() {
+        return fetch("/api/seminar", { headers: { Accept: "application/json" }, cache: "no-store" })
+          .then(function (r) { return r.ok ? r.json() : Promise.reject(new Error("failed")); })
+          .then(function (d) { render(d.seminar || {}); })
+          .catch(function () {
+            $("#sTitle").innerHTML = ph("Details unavailable right now");
+            $("#sTitle").classList.remove("loading");
+          });
+      }
+
+      /* ---------- validation ---------- */
+      var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+      function fail(input, msg) {
+        $("#formErr").textContent = msg;
+        $("#formErr").classList.add("show");
+        input.setAttribute("aria-invalid", "true");
+        input.focus();
+        return false;
+      }
+      function clearFail() {
+        $("#formErr").classList.remove("show");
+        ["fullName", "email", "phone"].forEach(function (id) {
+          var el = $("#" + id); if (el) el.removeAttribute("aria-invalid");
+        });
+      }
+
+      $("#regForm").addEventListener("submit", function (ev) {
+        ev.preventDefault();
+        clearFail();
+        var name = $("#fullName"), email = $("#email"), phone = $("#phone");
+        var n = name.value.trim(), e = email.value.trim();
+        if (n.length < 2) return fail(name, "Please enter your full name.");
+        if (!EMAIL_RE.test(e)) return fail(email, "Please enter a valid email address.");
+        if (phone.value.trim() && !/^[0-9+][0-9 ()-]{6,19}$/.test(phone.value.trim()))
+          return fail(phone, "Please enter a valid phone number.");
+
+        var btn = $("#submitBtn");
+        btn.disabled = true; btn.textContent = "Registering…";
+        fetch("/api/seminar/register", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            fullName: n, email: e, phone: phone.value.trim(),
+            organization: $("#organization").value.trim(), notes: $("#notes").value.trim(),
+            website: $("#website").value, formLoadedAt: loadedAt
+          })
+        })
+          .then(function (r) { return r.json().then(function (d) { return { ok: r.ok, data: d }; }); })
+          .then(function (out) {
+            if (!out.ok) {
+              if (out.data && /already/i.test(out.data.error || "")) email.setAttribute("aria-invalid", "true");
+              fail(out.data && out.data.error && /phone/i.test(out.data.error) ? phone : email,
+                   out.data.error || "We could not save your registration. Please try again.");
+              return;
+            }
+            $("#regForm").hidden = true;
+            $("#confirm").hidden = false;
+            $("#confirmMsg").textContent = out.data.message || "Thank you — your registration has been saved.";
+            $("#confirmSummary").innerHTML =
+              "<div><b>Name</b><span>" + esc(n) + "</span></div>" +
+              "<div><b>Email</b><span>" + esc(e) + "</span></div>" +
+              (phone.value.trim() ? "<div><b>Phone</b><span>" + esc(phone.value.trim()) + "</span></div>" : "") +
+              ($("#organization").value.trim() ? "<div><b>Organization</b><span>" + esc($("#organization").value.trim()) + "</span></div>" : "");
+            $("#confirm").scrollIntoView({ behavior: "smooth", block: "center" });
+          })
+          .catch(function () { fail(email, "Network problem — please check your connection and try again."); })
+          .then(function () { btn.disabled = false; btn.textContent = "Register now"; });
+      });
+
+      $("#againBtn").addEventListener("click", function () {
+        $("#confirm").hidden = true;
+        $("#regForm").hidden = false;
+        $("#regForm").reset();
+        loadedAt = Date.now();
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+
+      load();
+    })();
+  </script>
+</body>
+</html>
