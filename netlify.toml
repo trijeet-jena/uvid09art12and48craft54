@@ -1,14 +1,10 @@
 # Netlify hosts the existing static customer/admin pages. Replace the
 # uvid21-store part after deploying cloudflare-store/ with the
 # account subdomain in the URL Wrangler prints, then push this file to GitHub.
+# /api/admin/upload and /uploads/* are served by netlify/functions/uploads.mts
+# (Netlify Blobs); function paths take precedence over the proxy below.
 [[redirects]]
   from = "/api/*"
   to = "https://uvid-store-api.uvid21-store.workers.dev/api/:splat"
-  status = 200
-  force = true
-
-[[redirects]]
-  from = "/uploads/*"
-  to = "https://uvid-store-api.uvid21-store.workers.dev/uploads/:splat"
   status = 200
   force = true
